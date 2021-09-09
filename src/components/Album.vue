@@ -1,6 +1,6 @@
 <template>
     <section id="album-container">
-        <AlbumCard v-for= "(disc, index) in album" :key="index" :disc="disc"/>
+        <AlbumCard v-for= "(disc, index) in albumByYear()" :key="index" :disc="disc"/>
     </section>
   
 </template>
@@ -18,6 +18,16 @@ export default {
         return {
             album: [],
         };
+    },
+    methods: {
+        albumByYear() {
+            this.album.sort( (a, b) => {
+                return (a.year)-(b.year);
+            });
+
+            return this.album;   
+        },
+
     },
     created() {
         
