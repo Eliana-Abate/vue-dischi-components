@@ -1,15 +1,24 @@
 <template>
     <header>
         <div class="container">
-            <img src="@/assets/images/logo.png"/>
+            <div class="row">
+                <img src="@/assets/images/logo.png"/>
+                <GenreFilter/>
+
+            </div>
         </div>
     </header>
   
 </template>
 
 <script>
+import GenreFilter from '@/components/GenreFilter.vue';
+
 export default {
     name: "Header",
+    components: {
+        GenreFilter,
+    }
 }
 </script>
 
@@ -22,8 +31,15 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    img {
-        height: 50px;
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+                img {
+                height: 50px;
+                }
+        }
+    
     }
-  }
 </style>
