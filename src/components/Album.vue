@@ -1,6 +1,6 @@
 <template>
     <section id="album-container">
-        <AlbumCard/>
+        <AlbumCard v-for= "(disc, index) in album" :key="index" :disc="disc"/>
     </section>
   
 </template>
@@ -14,8 +14,22 @@ export default {
     components: {
         AlbumCard,
     },
+    data(){
+        return {
+            album: [],
+        };
+    },
     created() {
-        axios.get
+        for (let i = 0; i < 10; i++) {
+            axios 
+            .get('https://flynn.boolean.careers/exercises/api/array/music')
+            .then((res) => {
+                const response = res.data.response;
+                console.log(response);
+
+                this.album = response;   
+            })
+        } 
     }
 
 }
