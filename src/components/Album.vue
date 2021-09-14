@@ -1,7 +1,7 @@
 <template>
   <section id="album-container">
     <AlbumCard
-      v-for="(disc, index) in albumByYear()"
+      v-for="(disc, index) in arrayFromFather"
       :key="index"
       :disc="disc"
     />
@@ -9,42 +9,16 @@
 </template>
 
 <script>
-import axios from "axios";
 import AlbumCard from "@/components/AlbumCard.vue";
 
 export default {
   name: "Album",
+  props: ["arrayFromFather"],
   components: {
     AlbumCard,
   },
   data() {
-    return {
-      album: [],
-    };
-  },
-  methods: {
-    albumByYear() {
-      this.album.sort((a, b) => {
-        return a.year - b.year;
-      });
-
-      return this.album;
-    },
-
-    getArrayAlbum(array) {
-      this.album = array;
-      this.$emit("arrayFromAlbum", this.album);
-    },
-  },
-  created() {
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((res) => {
-        const response = res.data.response;
-        console.log(response);
-
-        this.album = response;
-      });
+    return {};
   },
 };
 </script>
