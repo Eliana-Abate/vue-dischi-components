@@ -5,7 +5,9 @@
         <img src="@/assets/images/logo.png" />
         <select id="filter-genre" v-model="selectedGenre">
           <option value="All">All music</option>
-          <option value=""></option>
+          <option v-for="(item, index) in arrayGenres" :key="index">
+            {{ item }}
+          </option>
         </select>
       </div>
     </div>
@@ -15,6 +17,7 @@
 <script>
 export default {
   name: "Header",
+  props: ["arrayGenres"],
   components: {},
   data() {
     return {

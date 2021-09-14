@@ -1,10 +1,6 @@
 <template>
   <section id="album-container">
-    <AlbumCard
-      v-for="(disc, index) in arrayFromFather"
-      :key="index"
-      :disc="disc"
-    />
+    <AlbumCard v-for="(disc, index) in arrayAlbum" :key="index" :disc="disc" />
   </section>
 </template>
 
@@ -13,7 +9,7 @@ import AlbumCard from "@/components/AlbumCard.vue";
 
 export default {
   name: "Album",
-  props: ["arrayFromFather"],
+  props: ["arrayAlbum"],
   components: {
     AlbumCard,
   },

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header />
+    <Header :arrayGenres="genres" />
     <main class="container">
-      <Album :arrayFromFather="album" />
+      <Album :arrayAlbum="album" />
     </main>
   </div>
 </template>
@@ -22,7 +22,18 @@ export default {
   data() {
     return {
       album: [],
+      genres: [],
     };
+  },
+  computed: {
+    genresList() {
+      this.album.forEach((item) => {
+        if (!this.genres.includes(item.genre)) {
+          this.genres.push(item.genre);
+        }
+      });
+      return this.genres;
+    },
   },
   methods: {},
   created() {
