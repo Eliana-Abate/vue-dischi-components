@@ -25,16 +25,6 @@ export default {
       genres: [],
     };
   },
-  computed: {
-    genresList() {
-      this.album.forEach((item) => {
-        if (!this.genres.includes(item.genre)) {
-          this.genres.push(item.genre);
-        }
-      });
-      return this.genres;
-    },
-  },
   methods: {},
   created() {
     axios
@@ -48,6 +38,12 @@ export default {
         });
 
         this.album = response;
+
+        this.album.forEach((item) => {
+          if (!this.genres.includes(item.genre)) {
+            this.genres.push(item.genre);
+          }
+        });
       });
   },
 };

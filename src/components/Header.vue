@@ -3,7 +3,11 @@
     <div class="container">
       <div class="row">
         <img src="@/assets/images/logo.png" />
-        <select id="filter-genre" v-model="selectedGenre">
+        <select
+          id="filter-genre"
+          v-model="selectedGenre"
+          @change="getSelectedGenre"
+        >
           <option value="All">All music</option>
           <option v-for="(item, index) in arrayGenres" :key="index">
             {{ item }}
@@ -23,6 +27,13 @@ export default {
     return {
       selectedGenre: "All",
     };
+  },
+
+  methods: {
+    getSelectedGenre(select) {
+      this.selectedGenre += select;
+      this.$emit("valueSelected", this.selectedGenre);
+    },
   },
 };
 </script>
