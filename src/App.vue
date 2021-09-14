@@ -1,32 +1,36 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header />
     <main class="container">
-      <Album/>
-
+      <Album @arrayFromAlbum="getFullArray" />
     </main>
-    
-   
   </div>
 </template>
 
 
 <script>
-import Header from '@/components/Header.vue';
-import Album from '@/components/Album.vue';
-
+import Header from "@/components/Header.vue";
+import Album from "@/components/Album.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
     Album,
-    
-  }
-}
+  },
+  data() {
+    return {
+      fullArray: [],
+    };
+  },
+  methods: {
+    getFullArray(albums) {
+      return (this.fullArray = albums);
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-  @import "@/assets/scss/style.scss";
-
+@import "@/assets/scss/style.scss";
 </style>
