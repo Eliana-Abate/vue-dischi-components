@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header :arrayGenres="genres" />
+    <Header :arrayGenres="genres" @valueSelected="getFilteredValue" />
     <main class="container">
-      <Album :arrayAlbum="album" />
+      <Album :arrayAlbum="getFilteredValue(album)" />
     </main>
   </div>
 </template>
@@ -23,9 +23,14 @@ export default {
     return {
       album: [],
       genres: [],
+      genreValue: "",
     };
   },
-  methods: {},
+  methods: {
+    getFilteredValue(array) {
+      if (this.genreValue == array.genre) return array;
+    },
+  },
   created() {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
