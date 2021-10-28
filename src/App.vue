@@ -2,7 +2,7 @@
   <div id="app">
     <Header :arrayGenres="genres" @valueSelected="getFilteredValue" />
     <main class="container">
-      <Album :arrayAlbum="getFilteredValue(album)" />
+      <Album :arrayAlbum="albumGenreFiltered" />
     </main>
   </div>
 </template>
@@ -23,12 +23,20 @@ export default {
     return {
       album: [],
       genres: [],
-      genreValue: "",
+      genreValue: "All",
     };
   },
+  computed: {
+    albumGenreFiltered: function () {
+      if (this.genreValue == "All") return this.album;
+      return this.album.filter((item) => {
+        if (item.genre == this.genreValue) return true;
+      });
+    },
+  },
   methods: {
-    getFilteredValue(array) {
-      if (this.genreValue == array.genre) return array;
+    getFilteredValue(genre) {
+      this.genreValue = genre;
     },
   },
   created() {
