@@ -9,7 +9,11 @@
           @change="getSelectedGenre"
         >
           <option value="All">All music</option>
-          <option v-for="(item, index) in arrayGenres" :key="index">
+          <option
+            v-for="(item, index) in arrayGenres"
+            :key="index"
+            :value="item"
+          >
             {{ item }}
           </option>
         </select>
@@ -30,8 +34,7 @@ export default {
   },
 
   methods: {
-    getSelectedGenre(select) {
-      this.selectedGenre += select;
+    getSelectedGenre() {
       this.$emit("valueSelected", this.selectedGenre);
     },
   },
